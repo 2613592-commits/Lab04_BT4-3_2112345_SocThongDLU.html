@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sóc Thông DLU - IT Student Profile</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* === CSS STYLES === */
+        :root {
+            --primary-color: #006837; /* Xanh lá đặc trưng DLU */
+            --secondary-color: #e67e22; /* Màu cam sóc thông */
+            --accent-color: #2ecc71;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --text-light: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Container chính */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Header / Hero Section */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #004d25);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid var(--secondary-color);
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .avatar:hover {
+            transform: scale(1.08) rotate(5deg);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+
+        header p.subtitle {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            font-weight: 300;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* Section Layout (Bố cục Thẻ - Cards) */
+        section {
+            background: var(--card-bg);
+            margin-top: 25px;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        section h2 i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+
+        /* Giới thiệu bản thân */
+        .bio-text {
+            color: var(--text-color);
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        .highlight {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Sở thích (Grid & Cards) */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .hobby-card {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .hobby-card:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .hobby-card:hover i {
+            color: white;
+        }
+
+        .hobby-card i {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+        }
+
+        /* Dự án tiêu biểu */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            border: 1px solid #e1e1e1;
+            border-radius: 12px;
+            padding: 20px;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .project-tag {
+            font-size: 0.75rem;
+            background: #e8f5e9;
+            color: var(--primary-color);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Thông tin liên hệ */
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-around;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-item i {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            background: #fff3e0;
+            padding: 12px;
+            border-radius: 50%;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.7rem; }
+            .container { padding: 0 10px; }
+            .contact-info { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER / HERO SECTION -->
+        <header>
+            <div class="avatar-container">
+                <!-- Sử dụng hình ảnh sóc thông minh họa từ Unsplash -->
+                <img src="https://images.unsplash.com/photo-1507663852427-44f2d76b1f2e?auto=format&fit=crop&w=300&q=80" alt="Sóc Thông DLU" class="avatar">
+            </div>
+            <h1>Sóc Thông DLU</h1>
+            <p class="subtitle">Linh vật Chính thức & Đại sứ Sinh viên IT DLU</p>
+            <span class="badge"><i class="fa-solid fa-code"></i> Khoa Công nghệ Thông tin - Đại học Đà Lạt</span>
+        </header>
+
+        <!-- GIỚI THIỆU BẢN THÂN -->
+        <section id="about">
+            <h2><i class="fa-solid fa-user-astronaut"></i> Giới Thiệu Bản Thân</h2>
+            <p class="bio-text">
+                Xin chào! Tớ là <span class="highlight">Sóc Thông</span> – linh vật đại diện cho tinh thần năng động, thông minh và đầy nhiệt huyết của cộng đồng sinh viên <span class="highlight">Trường Đại học Đà Lạt (DLU)</span>. 🌲🐿️
+                <br><br>
+                Được nuôi dưỡng dưới những rặng thông xanh ngát của thành phố ngàn hoa và niềm đam mê công nghệ bất tận, tớ luôn mang trong mình tinh thần <span class="highlight">Sinh viên IT DLU</span>: Sáng tạo - Kiên trì - Đam mê học hỏi. Tớ không chỉ biết nhặt quả thông đâu nhé, tớ còn biết gõ code, tối ưu thuật toán và thiết kế các ứng dụng xịn xò đấy!
+            </p>
+        </section>
+
+        <!-- SỞ THÍCH -->
+        <section id="hobbies">
+            <h2><i class="fa-solid fa-heart"></i> Sở Thích & Đam Mê</h2>
+            <div class="hobbies-grid">
+                <div class="hobby-card">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <h4>Lập trình Web</h4>
+                    <p>Viết code chuẩn HTML/CSS và làm chủ JavaScript.</p>
+                </div>
+                <div class="hobby-card">
+                    <i class="fa-solid fa-brain"></i>
+                    <h4>Khám phá AI</h4>
+                    <p>Học cách làm việc hiệu quả cùng Gemini và ChatGPT.</p>
+                </div>
+                <div class="hobby-card">
+                    <i class="fa-solid fa-tree"></i>
+                    <h4>Dạo quanh DLU</h4>
+                    <p>Tận hưởng không khí trong lành tại đồi thông đồi thơ.</p>
+                </div>
+                <div class="hobby-card">
+                    <i class="fa-solid fa-mug-hot"></i>
+                    <h4>Cà phê & Code</h4>
+                    <p>Thưởng thức cà phê Đà Lạt mỗi khi fix bug đêm.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DỰ ÁN TIÊU BIỂU -->
+        <section id="projects">
+            <h2><i class="fa-solid fa-diagram-project"></i> Dự Án Tiêu Biểu</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="project-tag">AI & Web Application</span>
+                    <h3>DLU Campus Guide Bot</h3>
+                    <p>Hệ thống chatbot hỗ trợ tân sinh viên tìm đường và tra cứu lịch học tại Đại học Đà Lạt tích hợp AI Gemini.</p>
+                </div>
+                <div class="project-card">
+                    <span class="project-tag">HTML5 / CSS3 Responsive</span>
+                    <h3>Sóc Thông Profile Website</h3>
+                    <p>Trang web cá nhân chuẩn 1-page profile thể hiện tinh thần sinh viên IT DLU chuyên nghiệp và sáng tạo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- THÔNG TIN LIÊN HỆ -->
+        <section id="contact">
+            <h2><i class="fa-solid fa-address-book"></i> Thông Tin Liên Hệ</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div>
+                        <strong>Email:</strong>
+                        <p>socthong@dlu.edu.vn</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <strong>Địa chỉ:</strong>
+                        <p>Khoa CNTT, Trường Đại học Đà Lạt, Lâm Đồng</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-globe"></i>
+                    <div>
+                        <strong>Website:</strong>
+                        <p>dlu.edu.vn</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>© 2026 Sóc Thông DLU - Bài tập 4.3 Thực hành Công cụ AI | Khoa CNTT - Đại học Đà Lạt</p>
+        </footer>
+    </div>
+
+</body>
+</html>
